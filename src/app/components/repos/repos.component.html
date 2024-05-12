@@ -15,8 +15,15 @@
                     <p>Github Repositories Fetcher</p>
                 </div>
             </div>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <form [formGroup]="searchBar" (ngSubmit)="searchUser()">
+            <div class="absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <form [formGroup]="searchBar" (ngSubmit)="searchUser()" class="flex flex-row items-center">
+                    <select formControlName="reposNumber" class="p-2 h-8 rounded border border-solid mx-2 align-text-top leading-tight p-1">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+
                     <input type="search" formControlName="searchTerm" id="search"
                         class="p-2 h-8 rounded border border-solid" placeholder="jone_doe">
                     <button type="submit"
@@ -94,9 +101,32 @@
                                 }}</button>
                         </ng-container>
                     </div>
+                    <div *ngIf="!item.topics || item.topics.length <= 0 && item.language"
+                        class="text-white mt-4 flex flex-wrap justify-content">
+                        <button class="px-2 py-2 border border-solid bg-sky-600 rounded-lg mb-2">{{ item.language
+                            }}</button>
+                    </div>
                 </div>
                 <!-- Card ends here... -->
             </div>
         </div>
     </div>
-    <!-- Repos section starts here -->
+    <!-- No repos -->
+    <div *ngIf="repo && repo.length === 0 &&  !loading">
+        <p>No repositories found.</p>
+    </div>
+    <!-- No repos ends -->
+    <!-- Pagination starts here -->
+    <div *ngIf="repo && !loading" class="grid grid-cols-5">
+        <div class="flex justify-between mt-4 col-start-3 col-end-4">
+            <button (click)="prevPage()" [disabled]="page === 1"
+                class="bg-blue-500 text-gray-700 px-4 py-2 rounded cursor-pointer"
+                [class.cursor-not-allowed]="page === 1">Previous</button>
+            <div>Page {{ page }}</div>
+            <button *ngIf="repo && repo.length > 0" (click)="nextPage()"
+                class="bg-blue-500 text-gray-700 px-4 py-2 rounded cursor-pointer">Next</button>
+        </div>
+    </div>
+    <!-- Pagination ends here -->
+</div>
+<!-- Repos section ends here -->

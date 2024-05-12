@@ -10,11 +10,15 @@ import { ApiService } from '../../services/api.service';
 export class ReposComponent {
   data: any;
   repo: any;
-  // loading = true;
-  loading: boolean = false;
+  loading: any;
+  page: number = 1;
+  per_page: number = 10;
+  searchTerm: any = '';
+  reposNumber: any;
 
   searchBar = this.formBuilder.group({
-    searchTerm: ''
+    searchTerm: '',
+    reposNumber: 10
   });
 
   constructor(
@@ -22,24 +26,49 @@ export class ReposComponent {
     private apiService: ApiService
   ) { }
 
-  async searchUser(): Promise<void> {
-    const searchTerm = this.searchBar.value.searchTerm;
-    if (searchTerm && typeof searchTerm === 'string') {
-      try {
-        this.loading = true;
-        const userData = await this.apiService.getUser(searchTerm).toPromise();
-        const repoData = await this.apiService.getRepo(searchTerm).toPromise();
-        if(this.data) {
-          this.loading = false;
-        }
-        this.data = userData;
-        this.repo = repoData;
-      } catch (error) {
-        console.error('Error fetching user/repos data:', error);
-      } finally {
-        this.loading = false;
-        this.searchBar.reset();
-      }
+  searchUser(): void {
+    this.searchTerm = this.searchBar.value.searchTerm;
+    this.reposNumber = this.searchBar.value.reposNumber;
+    
+    if(typeof this.reposNumber === 'number') {
+      this.per_page = this.reposNumber;
+    } else if(typeof this.reposNumber === 'string') {
+      this.per_page = parseInt(this.reposNumber);
+    }
+
+    console.log(this.per_page);
+    if (this.searchTerm && typeof this.searchTerm === 'string') {
+      this.fetchData(this.searchTerm);
     }
   }
+
+
+  async fetchData(searchTerm: any): Promise<void> {
+    try {
+      this.loading = true;
+      const userData = await this.apiService.getUser(searchTerm).toPromise();
+      const repoData = await this.apiService.getRepo(searchTerm, this.page, this.per_page).toPromise();
+      this.data = userData;
+      this.repo = repoData;
+    } catch (error) {
+      console.error('Error fetching user/repos data:', error);
+    } finally {
+      this.loading = false;
+      this.searchBar.reset();
+    }
+  }
+
+
+  nextPage() {
+    this.page++;
+    this.fetchData(this.searchTerm);
+  }
+
+  prevPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.fetchData(this.searchTerm);
+    }
+  }
+
 }
