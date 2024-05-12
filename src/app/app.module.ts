@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { HttpClientModule } from  '@angular/common/http';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { ReposComponent } from './components/repos/repos.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    ReposComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSkeletonLoaderModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

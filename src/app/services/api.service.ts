@@ -12,8 +12,12 @@ export class ApiService {
   ) { }
 
   getUser(githubUsername: string) {
-    return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
+    // return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
+    return this.httpClient.get(`http://localhost:3000/${githubUsername}`);
   }
 
-  // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
+  getRepo(githubUsername: string) {
+    // return this.httpClient.get(`https://api.github.com/users/${githubUsername}/repos`);
+    return this.httpClient.get(`http://localhost:3000/${githubUsername}/repos`);
+  }
 }
