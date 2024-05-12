@@ -1,43 +1,61 @@
 # Fyle Frontend Challenge
 
-## Who is this for?
+This web app allows you to search for GitHub users and view their repositories. You can specify the number of repositories to display per page.
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+## Features
 
-## Why work at Fyle?
+- Search for GitHub users by username.
+- View user details such as name, avatar, bio, location, and Twitter username.
+- Pagination support to navigate through multiple pages of repositories.
+- Specify the number of repositories to display per page.
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+## Getting Started
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+Follow these instructions to get the project up and running on your local machine.
 
-## Challenge outline
 
-This challenge involves implementing application using github api. 
+## Prerequisites
 
-The services that you need to use are already implemented - check out ApiService.
+Before running the project, ensure you have the following installed:
 
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
-
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
-
-## What happens next?
-
-You will hear back within 48 hours from us via email.
+- Node.js and npm (Node Package Manager)
+- Angular CLI (Command Line Interface)
 
 ## Installation
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+1. Clone the repository to your local machine:
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+    `git clone https://github.com/Naved-Uddin9950/fyle-internship-challenge-23.git`
 
-## Development server
+2. Navigate to the project directory:
+    
+    `cd fyle-internship-challenge-23`
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+3. Install dependencies using npm:
 
-## Further help
+    `npm install`
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+
+## Running the App
+
+1. Start the development server:
+
+    `ng serve`
+
+2. Open your web browser and navigate to http://localhost:4200/ to view the app.
+
+
+## Usage
+
+1. Enter a GitHub username in the search bar.
+2. Optionally, specify the number of repositories to display per page using the dropdown menu. ( by default 10 repos will show )
+3. Click the "Search" button to fetch the user's repositories.
+4. Use the pagination controls to navigate through multiple pages of repositories.
+
+## Built With
+
+1. Angular - Frontend framework
+2. TypeScript - Programming language
+3. HTML/Tailwind CSS - Markup and styling
+4. GitHub API - Data source for user and repository information
+

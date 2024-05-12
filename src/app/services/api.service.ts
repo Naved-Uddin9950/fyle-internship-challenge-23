@@ -12,8 +12,8 @@ export class ApiService {
   ) { }
 
   getUser(githubUsername: string) {
-    // return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
-    return this.httpClient.get(`http://localhost:3000/${githubUsername}`);
+    return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
+    // return this.httpClient.get(`http://localhost:3000/${githubUsername}`);
   }
 
   getRepo(githubUsername: string, page: number, per_page: number) {

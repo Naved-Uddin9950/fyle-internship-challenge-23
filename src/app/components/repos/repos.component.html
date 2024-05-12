@@ -17,7 +17,8 @@
             </div>
             <div class="absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <form [formGroup]="searchBar" (ngSubmit)="searchUser()" class="flex flex-row items-center">
-                    <select formControlName="reposNumber" class="p-2 h-8 rounded border border-solid mx-2 align-text-top leading-tight p-1">
+                    <select formControlName="reposNumber"
+                        class="p-2 h-8 rounded border border-solid mx-2 align-text-top leading-tight p-1">
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="50">50</option>
@@ -38,6 +39,9 @@
 
 <!-- Repos section starts here -->
 <div class="flex-auto mx-10 my-10">
+    <div *ngIf="!loading && !data && isSearched" class="flex flex-row items-center justify-content text-2xl text-bold">
+        User not found
+    </div>
     <!-- Header container -->
     <div class="flex items-center flex-row flex-wrap gap-6">
         <!-- Profile Image -->
