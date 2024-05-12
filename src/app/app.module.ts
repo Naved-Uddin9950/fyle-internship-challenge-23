@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser'
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from  '@angular/common/http';
@@ -15,8 +15,12 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxSkeletonLoaderModule
-  ],
+    // NgxSkeletonLoaderModule,
+    NgxSkeletonLoaderModule.forRoot({
+      theme: {
+        extendsFromRoot: true,
+      },
+    }),  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

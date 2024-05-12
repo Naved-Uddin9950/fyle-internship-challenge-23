@@ -26,7 +26,6 @@
         </div>
     </div>
 </nav>
-
 <!-- Navbar section ends here -->
 
 
@@ -35,20 +34,29 @@
     <!-- Header container -->
     <div class="flex items-center flex-row flex-wrap gap-6">
         <!-- Profile Image -->
-        <div *ngIf="data && data.avatar_url"
+        <div class="item" *ngIf="loading">
+            <ngx-skeleton-loader count="1" appearance="circle" [theme]="{height: '8rem', width: '8rem'}" />
+        </div>
+
+        <div *ngIf="data && data.avatar_url && !loading"
             class="overflow-hidden bg-gray-200 group-hover:opacity-75 w-40 h-40 border border-solid rounded-full border-slate-900">
             <img src="{{ data.avatar_url }}" alt="Profile Image"
                 class="object-cover object-center w-40 h-40 border-box">
         </div>
 
-        <div *ngIf="data && !data.avatar_url"
+        <div *ngIf="data && !data.avatar_url && !loading"
             class="overflow-hidden bg-gray-200 group-hover:opacity-75 w-40 h-40 border border-solid rounded-full border-slate-900">
             <img src="https://placehold.co/600x400?text=Image" alt="Profile Image"
                 class="object-cover object-center w-40 h-40 border-box">
         </div>
 
         <!-- Profile Details -->
-        <div class="grow leading-8">
+        <div class="item grow leading-8" *ngIf="loading">
+            <ngx-skeleton-loader count="2" appearance="line" />
+            <ngx-skeleton-loader count="1" appearance="line" [theme]="{height: '2rem'}" />
+        </div>
+
+        <div class="grow leading-8" *ngIf="!loading">
             <h3 *ngIf="data.name" class="text-2xl font-bold">{{ data.name }}</h3>
             <h3 *ngIf="!data.name && data.login" class="text-2xl font-bold">{{ data.login }}</h3>
             <p *ngIf="data.bio">{{ data.bio }}</p>
@@ -59,13 +67,17 @@
             <p *ngIf="data.twitter_username">{{ data.twitter_username }}</p>
         </div>
     </div>
-    <p *ngIf="data" class="my-2 mx-0 flex flex-shrink-0 items-center">
+    <p *ngIf="data && !loading" class="my-2 mx-0 flex flex-shrink-0 items-center">
         <img class="h-5 w-auto pr-2" src="../../../assets/link.png" alt="Link">
         https://github.com/{{ data.name }}
     </p>
 
     <!-- Repos container -->
-    <div *ngIf="repo && repo.length > 0" class="bg-white">
+    <div class="item" *ngIf="loading">
+        <ngx-skeleton-loader count="5" appearance="line" />
+    </div>
+
+    <div *ngIf="repo && repo.length > 0 && !loading" class="bg-white">
         <div class="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8">
             <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-8">
 
@@ -88,7 +100,3 @@
         </div>
     </div>
     <!-- Repos section starts here -->
-
-    <!-- <div *ngIf="data">
-    <h1>Data is this: {{ data.username }}</h1>
-</div> -->
